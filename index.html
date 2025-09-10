@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise Unlocker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #FFD3E1, #D7FBE8, #C7CEEA);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #FFB6C1;
+            border-radius: 10px;
+            font-size: 1.2em;
+            box-sizing: border-box;
+        }
+        button {
+            background: #FF69B4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #FF1493;
+        }
+        #error-message {
+            color: #FF4500;
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: none;
+        }
+        #qr-section {
+            display: none;
+        }
+        #qr-image {
+            width: 100%;
+            max-width: 300px;
+            margin: 20px 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        #qr-text {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            input[type="password"], button {
+                font-size: 1em;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎂 Birthday Surprise Unlocker 🎉</h1>
+        <input type="password" id="password" placeholder="Enter password...">
+        <button onclick="checkPassword()">Unlock</button>
+        <div id="error-message"></div>
+        <div id="qr-section">
+            <a href="https://kartiks4201.github.io/Ishika-Birthday/" target="_blank">
+                <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://kartiks4201.github.io/Ishika-Birthday/" alt="QR Code">
+            </a>
+            <div id="qr-text">🎁 Scan me (or tap me) for your secret birthday surprise! 🎁</div>
+        </div>
+    </div>
+
+    <script>
+        // Obfuscated password
+        const encodedPassword = "TG92ZXlvdWN1dGllZQ=="; // Base64 of "Loveyoucutiee"
+
+        function decodePassword(encoded) {
+            return atob(encoded);
+        }
+
+        const funnyMessages = [
+            "Nope! This cake is still locked 🍰🔒",
+            "Try harder, birthday detective 🕵️‍♀️",
+            "Arre wah! Tum toh hacker nikli 😆",
+            "Ab bas ek aur try… warna gift cancel 🤭"
+        ];
+
+        function checkPassword() {
+            const input = document.getElementById("password").value;
+            const errorDiv = document.getElementById("error-message");
+            const qrSection = document.getElementById("qr-section");
+
+            if (input === decodePassword(encodedPassword)) {
+                document.getElementById("password").style.display = "none";
+                document.querySelector("button").style.display = "none";
+                errorDiv.style.display = "none";
+                qrSection.style.display = "block";
+            } else {
+                const randomIndex = Math.floor(Math.random() * funnyMessages.length);
+                errorDiv.textContent = funnyMessages[randomIndex];
+                errorDiv.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
